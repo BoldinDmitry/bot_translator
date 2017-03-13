@@ -12,7 +12,7 @@ def change_language(message):
     bot.send_message(message.chat.id, "now your translation language is " + message.text, reply_markup=markup)
 
 
-def open_languge_setings(message):
+def open_languages_settings(message):
     bot = telebot.TeleBot(config.token)
     markup = types.ReplyKeyboardMarkup(row_width=1)
     itembtn1 = types.KeyboardButton(':English')

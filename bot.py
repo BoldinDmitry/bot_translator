@@ -1,6 +1,6 @@
 import config
 import inline_moduel
-import language_setings
+import language_settings
 import telebot
 from telebot import types
 bot = telebot.TeleBot(config.token)
@@ -17,20 +17,20 @@ def send_welcome(message):
 Welkom to Translator bot settings, here you could set your translation language.\
 """)
     markup = types.ReplyKeyboardMarkup(row_width=1)
-    welcom_buton1 = types.KeyboardButton('change language')
-    welcom_buton2 = types.KeyboardButton('other option')
-    markup.add(welcom_buton1, welcom_buton2)
+    welcome_button1 = types.KeyboardButton('change language')
+    welcome_button2 = types.KeyboardButton('other option')
+    markup.add(welcome_button1, welcome_button2)
     bot.send_message(message.chat.id, "you can:", reply_markup=markup)
 
 
 @bot.message_handler(func=lambda message: message.text == 'change language')
 def message_handler(message):
-    language_setings.open_languge_setings(message)
+    language_settings.open_languages_settings(message)
 
 
 @bot.message_handler(func=lambda message: message.text[0] == ':')
 def message_handler(message):
-    language_setings.change_language(message)
+    language_settings.change_language(message)
 
 
 
