@@ -3,6 +3,7 @@ import inline_moduel
 import language_settings
 import telebot
 from telebot import types
+
 bot = telebot.TeleBot(config.token)
 
 
@@ -13,7 +14,7 @@ def inline_handle(inline_query):
 
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
-    bot.send_message(message.chat.id,  """\
+    bot.send_message(message.chat.id, """\
 Welkom to Translator bot settings, here you could set your translation language.\
 """)
     markup = types.ReplyKeyboardMarkup(row_width=1)
@@ -31,8 +32,6 @@ def message_handler(message):
 @bot.message_handler(func=lambda message: message.text[0] == ':')
 def message_handler(message):
     language_settings.change_language(message)
-
-
 
 
 if __name__ == '__main__':

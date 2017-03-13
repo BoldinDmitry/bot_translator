@@ -3,6 +3,7 @@ import telebot
 import json
 from telebot import types
 
+
 def change_language(message):
     bot = telebot.TeleBot(config.token)
     user_data = json.dumps({"id": message.chat.id, "language": message.text}, sort_keys=True)
