@@ -3,10 +3,11 @@ import telebot
 import json
 from telebot import types
 
+
 def change_language(message):
     bot = telebot.TeleBot(config.token)
     user_data = json.dumps({"id": message.chat.id, "language": message.text}, sort_keys=True)
-    file = open('database.txt', 'a')
+    file = open('database.json', 'a')
     file.write(user_data + '\n')
     markup = types.ReplyKeyboardRemove(selective=False)
     bot.send_message(message.chat.id, "now your translation language is " + message.text, reply_markup=markup)

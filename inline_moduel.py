@@ -7,15 +7,13 @@ yandex_icon = "https://lh5.ggpht.com/g40UQh7fmsg0oLRNpF4b06zeGBOwerbepCXTPz-HSwT
 bot_icon = "https://telegram.org/file/811140614/2/flKQKZ7xUOE.27938.gif/5574a04570218c9e11"
 
 
-
-
 def handle_inline_query(bot, inline_query):
     yandex_icon = "https://lh5.ggpht.com/g40UQh7fmsg0oLRNpF4b06zeGBOwerbepCXTPz-HSwTSBBZzPODjzjJWkDUrX2v6p60=w300"
     bot_icon = "https://telegram.org/file/811140614/2/flKQKZ7xUOE.27938.gif/5574a04570218c9e11"
     try:
         translation = types.InlineQueryResultArticle(
             '1', 'translation', types.InputTextMessageContent('translated_text'),
-        thumb_url = yandex_icon, thumb_width = 48, thumb_height = 48
+            thumb_url=yandex_icon, thumb_width=48, thumb_height=48
         )
         suggestion = types.InlineQueryResultArticle(
             '2', 'bot contact', types.InputTextMessageContent('for language setup https://telegram.me/TranslateInBot'),
