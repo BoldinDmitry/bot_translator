@@ -17,11 +17,8 @@ def send_welcome(message):
 <<<<<<< HEAD
     bot.send_message(message.chat.id, """\
 Welkom to Translator bot settings, here you could set your translation language.\
+Welcome to Translator bot settings, here you could set your translation language.\
 """)
-=======
-    bot.send_message(message.chat.id, "Welcome to Translator bot settings, here you could set your translation "
-                                      "language.")
->>>>>>> origin/master
     markup = types.ReplyKeyboardMarkup(row_width=1)
 <<<<<<< Updated upstream
     welcome_button1 = types.KeyboardButton('change language')
