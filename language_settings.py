@@ -3,15 +3,12 @@ import telebot
 import json
 from telebot import types
 import yandexAPI
-database = {}
-itembtn_name = []
-markup_list = []
-yandexAPI_list = list(yandexAPI.get_supported_languages())
 
 
 def change_language(message):
+    database = {}
     bot = telebot.TeleBot(config.token)
-    database[message.from_user.id] = message.text
+    database[message.from_user.id] = yandexAPI.get_supported_languages()[message.text]
     database_json = json.dumps(database)
     file = open('database.json', 'w')
     file.write(database_json + '\n')
@@ -20,6 +17,9 @@ def change_language(message):
 
 
 def open_languages_settings(message):
+    markup_list = []
+    itembtn_name = []
+    yandexAPI_list = list(yandexAPI.get_supported_languages())
     bot = telebot.TeleBot(config.token)
     markup = types.ReplyKeyboardMarkup(row_width=1)
     for i in range(90):
@@ -30,3 +30,9 @@ def open_languages_settings(message):
         i += 1
     print(markup_list)
     bot.send_message(message.chat.id, "Choose language:", reply_markup=markup)
+
+
+def get_user_language(user_id):
+    file = json.load(open('database.json', 'r'))
+    return file[str(user_id)]
+

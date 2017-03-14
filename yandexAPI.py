@@ -27,3 +27,4 @@ def get_supported_languages():
     answer = json.loads(answer)
     return answer['langs']
 
+print(get_supported_languages())
