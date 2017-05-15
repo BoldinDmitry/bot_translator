@@ -24,13 +24,21 @@ def change_language(message):
     bot = telebot.TeleBot(config.token)
     with open('database.json') as file:
         database = json.load(file)
-    database[message.from_user.id] = message.text[-3:-1]
-    # file.close()
+    database = dict(database)
+    # print(database.keys())
+    # print(message.from_user.id)
+    # print(database.get(str(message.from_user.id)))
+    while database.get(str(message.from_user.id)) is not None:
+        database.pop(str(message.from_user.id))
+        print('1')
+    database[str(message.from_user.id)] = message.text[-3:-1]
     file = open('database.json', 'w')
     file.write(json.dumps(database))
     file.close()
     markup = types.ReplyKeyboardRemove(selective=False)
     bot.send_message(message.chat.id, "now your translation language is" + message.text, reply_markup=markup)
+    bot.send_message(message.chat.id, "wait few seconds while database updating", reply_markup=markup)
+
 
 
 def open_languages_settings(message):
@@ -52,7 +60,6 @@ def get_user_language(user_id):
     """
     with open('database.json') as file:
         database = json.load(file)
-        print(database)
         print(user_id)
         language = database.get(str(user_id))
         print(language)
