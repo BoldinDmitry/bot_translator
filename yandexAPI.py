@@ -14,7 +14,7 @@ def translate(language: str, text: str) -> str:
            + "&lang=" + language
     answer = requests.get(link).text
     answer = json.loads(answer)
-    print(answer)
+    #print(answer)
     if answer["code"] == 200:
         return answer["text"][0]
     else:
@@ -27,4 +27,4 @@ def get_supported_languages():
     answer = json.loads(answer)
     return answer['langs']
 
-print(get_supported_languages())
+#(get_supported_languages())

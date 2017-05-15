@@ -1,20 +1,14 @@
-import config
-import telebot
-from telebot import types
-
-bot = telebot.TeleBot(config.token)
-
-
-@bot.inline_handler(lambda query: len(query.query) >= 0)
-def query_text(inline_query):
-    try:
-        translation = types.InlineQueryResultArticle('1', 'translation', types.InputTextMessageContent('h'))
-        suggestion = types.InlineQueryResultArticle('2', 'bot contact', types.InputTextMessageContent(
-            'for language setup https://telegram.me/TranslateInBot'))
-        bot.answer_inline_query(inline_query.id, [translation, suggestion])
-    except Exception as e:
-        print(e)
-
-
-if __name__ == '__main__':
-    bot.polling(none_stop=True)
+def open_languages_settings(message):
+    bot = telebot.TeleBot(config.token)
+    keyboard = types.InlineKeyboardMarkup()
+    #markup = types.ReplyKeyboardMarkup(row_width=1)
+    for i in range(90):
+        itembtn_name.append('itmbtn' + str(i))
+        itembtn_namei = types.InlineKeyboardButton(
+            ": " + yandexAPI.get_supported_languages()[yandexAPI_list[i]], callback_data=yandexAPI_list[i]
+                                                   )
+        markup_list.append(itembtn_name[i])
+        keyboard.add(itembtn_namei)
+        i += 1
+    print(markup_list)
+    bot.send_message(message.chat.id, "Choose language:", reply_markup=keyboard)

@@ -14,7 +14,6 @@ def handle_inline_query(bot, inline_query):
     bot_icon = "https://telegram.org/file/811140614/2/flKQKZ7xUOE.27938.gif/5574a04570218c9e11"
 
     language = language_settings.get_user_language(user_id=inline_query.from_user.id)
-    print(language)
     translated_text = yandexAPI.translate(language, inline_query.query)
     try:
         translation = types.InlineQueryResultArticle(

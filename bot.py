@@ -1,10 +1,12 @@
 import config
+import yandexAPI
 import inline_moduel
 import language_settings
 import telebot
 from telebot import types
 
 bot = telebot.TeleBot(config.token)
+yandexAPI_list = list(yandexAPI.get_supported_languages())
 
 
 @bot.inline_handler(lambda query: len(query.query) >= 0)
