@@ -21,7 +21,7 @@ Welcome to Translator bot settings, here you could set your translation language
 """)
     markup = types.ReplyKeyboardMarkup(row_width=1)
     welcome_button1 = types.KeyboardButton('change language')
-    welcome_button2 = types.KeyboardButton('other option')
+    welcome_button2 = types.KeyboardButton('instruction')
     markup.add(welcome_button1, welcome_button2)
     bot.send_message(message.chat.id, "you can:", reply_markup=markup)
 
@@ -34,6 +34,19 @@ def message_handler(message):
 @bot.message_handler(func=lambda message: message.text[0] == ':')
 def message_handler(message):
     language_settings.change_language(message)
+
+
+@bot.message_handler(func=lambda message: message.text == 'instruction')
+def message_handler(message):
+    markup = types.ReplyKeyboardMarkup(row_width=1)
+    welcome_button1 = types.KeyboardButton('change language')
+    markup.add(welcome_button1)
+    bot.send_message(message.chat.id,
+                     "First you need to chose language with 'change language' button,"
+                     " then, in anu chat, you can call inline bot with "
+                     "'@TranslateinBot + 'message on any language'' command and bot"
+                     " will sand your message translated on chosen language."
+                     , reply_markup=markup)
 
 
 if __name__ == '__main__':

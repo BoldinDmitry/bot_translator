@@ -15,13 +15,15 @@ def handle_inline_query(bot, inline_query):
 
     language = language_settings.get_user_language(user_id=inline_query.from_user.id)
     translated_text = yandexAPI.translate(language, inline_query.query)
-    translation = types.InlineQueryResultArticle(
-        '1', 'translation', types.InputTextMessageContent(translated_text),
-        thumb_url=yandex_icon, thumb_width=48, thumb_height=48
-    )
-    suggestion = types.InlineQueryResultArticle(
-        '2', 'bot contact', types.InputTextMessageContent('for language setup https://telegram.me/TranslateInBot'),
-        thumb_url=bot_icon, thumb_width=48, thumb_height=48
-    )
-    bot.answer_inline_query(inline_query.id, [translation, suggestion])
-
+    try:
+        translation = types.InlineQueryResultArticle(
+            '1', 'translation', types.InputTextMessageContent(translated_text),
+            thumb_url=yandex_icon, thumb_width=48, thumb_height=48
+        )
+        suggestion = types.InlineQueryResultArticle(
+            '2', 'bot contact', types.InputTextMessageContent('for language setup https://telegram.me/TranslateInBot'),
+            thumb_url=bot_icon, thumb_width=48, thumb_height=48
+        )
+        bot.answer_inline_query(inline_query.id, [translation, suggestion])
+    except Exception as e:
+        print(e)
