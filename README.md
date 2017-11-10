@@ -1,5 +1,4 @@
 # bot_translator
-#h1 Bot translator
 
 
 
